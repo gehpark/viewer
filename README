@@ -1,0 +1,30 @@
+============
+Requirements
+============
+
+The following libraries are required:
+    * CMake (v2.4+) [http://www.cmake.org/]
+    * QT4   (v4.4+) [http://qt.nokia.com/]
+
+========
+Building
+========
+1. cd viewer
+
+2. mkdir build
+   cd build
+
+2. cmake .. 
+   or
+   ccmake ..
+   or 
+   cmake-gui ..
+
+3. make 
+
+=======
+Running
+=======
+1. ./viewer
+
+2. Press 'I'

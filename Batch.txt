@@ -1,0 +1,1 @@
+(#particles, particle radius, walk distance, #obstacles, obstacle radius, amplitude, distance between obstacles, formation, [oscillation factors by row], wind strength, wind direction, run time, timer interval, mode, interaction, bin count)
