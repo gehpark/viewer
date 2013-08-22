@@ -1,11 +1,11 @@
 /********************************************************************************
-** Form generated from reading UI file 'window.ui'
-**
-** Created: Tue Jul 16 00:52:05 2013
-**      by: Qt User Interface Compiler version 4.8.4
-**
-** WARNING! All changes made in this file will be lost when recompiling UI file!
-********************************************************************************/
+ ** Form generated from reading UI file 'window.ui'
+ **
+ ** Created: Tue Jul 16 00:52:05 2013
+ **      by: Qt User Interface Compiler version 4.8.4
+ **
+ ** WARNING! All changes made in this file will be lost when recompiling UI file!
+ ********************************************************************************/
 
 #ifndef UI_WINDOW_H
 #define UI_WINDOW_H
@@ -25,6 +25,8 @@
 #include <QtGui/QWidget>
 #include "glviewer.h"
 
+#include <iostream>
+
 QT_BEGIN_NAMESPACE
 
 class Ui_MainWindow
@@ -40,7 +42,7 @@ public:
     QMenuBar *menuBar;
     QMenu *menuData;
     QMenu *menuView;
-
+    
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
@@ -57,15 +59,16 @@ public:
         gridLayout = new QGridLayout(centralwidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         viewer = new GlViewer(centralwidget);
+        std::cout << "allocate:  " << viewer << std::endl;
         viewer->setObjectName(QString::fromUtf8("viewer"));
         viewer->setFocusPolicy(Qt::StrongFocus);
         viewer->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         pushButton = new QPushButton(viewer);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(10, 10, 114, 32));
-
+        
         gridLayout->addWidget(viewer, 0, 0, 1, 1);
-
+        
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -78,17 +81,17 @@ public:
         menuView = new QMenu(menuBar);
         menuView->setObjectName(QString::fromUtf8("menuView"));
         MainWindow->setMenuBar(menuBar);
-
+        
         menuBar->addAction(menuData->menuAction());
         menuBar->addAction(menuView->menuAction());
         menuData->addAction(actionRandom_Circles);
         menuView->addAction(actionCircles);
-
+        
         retranslateUi(MainWindow);
-
+        
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
-
+    
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Random Walk", 0, QApplication::UnicodeUTF8));
@@ -100,7 +103,7 @@ public:
         menuData->setTitle(QApplication::translate("MainWindow", "Data", 0, QApplication::UnicodeUTF8));
         menuView->setTitle(QApplication::translate("MainWindow", "View", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
-
+    
 };
 
 namespace Ui {

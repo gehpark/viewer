@@ -54,7 +54,6 @@ public:
     void generate_particles(int np);
     void generate_obstacles(int nob, QString obstacle_mode, double row_dist, int per_row);
     void draw_particles() const;
-    //void draw_frozen() const;
     void draw_obstacles() const;
     void draw_one_particle(const double cx,
                          const double cy,
@@ -64,10 +63,6 @@ public:
                          const double cy,
                          const double radius,
                          const std::vector<double>& points) const;
-    /**void draw_one_frozen(const double cx,
-                         const double cy,
-                         const double radius,
-                         const std::vector<double>& points) const;**/
     void generate_polygon(unsigned np,
                           std::vector<double>& points) const;
 

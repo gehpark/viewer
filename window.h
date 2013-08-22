@@ -14,6 +14,7 @@
 
 // local
 #include "ui_window.h"
+#include "GlViewer.h"
 
 class MainWindow : public QMainWindow, public Ui_MainWindow
 {
@@ -23,6 +24,7 @@ public:
 
     MainWindow();
     ~MainWindow();
+    //    GlViewer *viewer;
     QToolBar *currentTool;
     double max_runtime;
     long time_counter;
@@ -72,6 +74,7 @@ public slots:
     void downWind();
     void rightWind();
     void leftWind();
+    void run_batch(char** args);
 
 private:
 

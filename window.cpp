@@ -5,6 +5,8 @@
 #include <QTimer>
 #include <QInputDialog>
 #include <QFrame>
+
+#include <cassert>
 // local
 #include "window.h"
 
@@ -291,6 +293,7 @@ void MainWindow::on_actionRandom_Circles_triggered()
     QString string_statuss = status_modes.join(",");
     statusBar()->showMessage(string_statuss);
     
+    assert(viewer != 0);
     viewer->setObstacleRadius(OBSTACLE_RADIUS);
 
     /**
@@ -342,8 +345,10 @@ void MainWindow::on_actionRandom_Circles_triggered()
 
 void MainWindow::default_values()
 {
+    isMovingParticles = false;
     int np = 1000;
     int nob = 10;
+    time_counter = 0;
     max_runtime = 200000;
     double row_dist = 0;
     per_row = 0;
@@ -385,6 +390,30 @@ void MainWindow::on_actionCircles_toggled()
     
     //Toggle them off so we aren't repainting when no circles are visible
     isMovingParticles = !isMovingParticles;
+}
+
+void MainWindow::run_batch(char **args)
+{
+    isMovingParticles = false;
+    int np = (int)(*args[0]);
+    int nob = (int)(*args[9]);
+    time_counter = 0;
+    max_runtime = (int)(*args[16]);
+    double row_dist = (double)(*args[14]);
+    per_row = (int)(*args[15]);
+    OBSTACLE_RADIUS = (double)(*args[10]);
+    //PARTICLE_RADIUS = .01;
+    //OBSTACLE_RADIUS = .06;
+    mode = (QString)(*args[6]);
+    obstacle_mode = (QString)(*args[13]);
+    interaction = (QString)(*args[8]);
+    viewer->generate_particles(np);
+    viewer->generate_obstacles(nob, obstacle_mode, row_dist, per_row);
+    viewer->touch(interaction, OBSTACLE_RADIUS);
+    viewer->repaint();
+
+    //Start moving the circles since by default this is off
+    isMovingParticles = true;
 }
 
 void MainWindow::timer_update()
