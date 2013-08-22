@@ -550,7 +550,9 @@ void GlViewer::touch(QString interaction, double OBSTACLE_RADIUS)
                 **/
 
                 //y(x1 - x0) = x(y1 - y0) + B'
-                double x0 = (*it).x_old;
+                
+
+                /**double x0 = (*it).x_old;
                 double x1 = (*it).x;
                 double y0 = (*it).y_old;
                 double y1 = (*it).y;
@@ -577,8 +579,18 @@ void GlViewer::touch(QString interaction, double OBSTACLE_RADIUS)
 
                 double x_ref = x_int + (x_int - x1);
                 double y_ref = y_int + (y_int - y1);
-                (*it).x = x_ref;
-                (*it).y = y_ref;
+                if (x_ref != x_ref)
+                {
+
+                }
+                else
+                {  
+                    (*it).x = x_ref;
+                    (*it).y = y_ref;
+                }**/
+
+                (*it).x = (*it).x_old;
+                (*it).y = (*it).y_old;
                 
                 /**double y_int = M * x_int + B;
                 // find y = Mc * x + Bc, the normal to the circle

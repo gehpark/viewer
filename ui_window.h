@@ -59,7 +59,6 @@ public:
         gridLayout = new QGridLayout(centralwidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         viewer = new GlViewer(centralwidget);
-        std::cout << "allocate:  " << viewer << std::endl;
         viewer->setObjectName(QString::fromUtf8("viewer"));
         viewer->setFocusPolicy(Qt::StrongFocus);
         viewer->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
