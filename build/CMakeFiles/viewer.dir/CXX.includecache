@@ -14,6 +14,10 @@ qstring.h
 qstringlist.h
 /Library/Frameworks/QtCore.framework/Headers/qstringlist.h
 
+/Library/Frameworks/QtCore.framework/Headers/QTimer
+qtimer.h
+/Library/Frameworks/QtCore.framework/Headers/qtimer.h
+
 /Library/Frameworks/QtCore.framework/Headers/qstring.h
 QtCore/qchar.h
 -
@@ -48,9 +52,23 @@ QtCore/qstringmatcher.h
 Qt3Support/q3valuelist.h
 -
 
+/Library/Frameworks/QtCore.framework/Headers/qtimer.h
+QtCore/qbasictimer.h
+-
+QtCore/qobject.h
+-
+
 /Library/Frameworks/QtGui.framework/Headers/QAction
 qaction.h
 /Library/Frameworks/QtGui.framework/Headers/qaction.h
+
+/Library/Frameworks/QtGui.framework/Headers/QFrame
+qframe.h
+/Library/Frameworks/QtGui.framework/Headers/qframe.h
+
+/Library/Frameworks/QtGui.framework/Headers/QInputDialog
+qinputdialog.h
+/Library/Frameworks/QtGui.framework/Headers/qinputdialog.h
 
 /Library/Frameworks/QtGui.framework/Headers/QMainWindow
 qmainwindow.h
@@ -2328,13 +2346,7 @@ QGLWidget
 QPaintEvent
 -
 
-/Users/graceparkssd/Desktop/viewer/main.cpp
-QtGui
--
-window.h
-/Users/graceparkssd/Desktop/viewer/window.h
-/Volumes/Macintosh HD/Applications/MATLAB_R2012a.app/extern/include/engine.h
--
+/Users/graceparkssd/Desktop/viewer/randomWalk.h
 
 /Users/graceparkssd/Desktop/viewer/ui_window.h
 QtCore/QLocale
@@ -2368,6 +2380,22 @@ glviewer.h
 iostream
 -
 
+/Users/graceparkssd/Desktop/viewer/window.cpp
+QtGui
+-
+QTimer
+-
+QInputDialog
+-
+QFrame
+-
+cassert
+-
+window.h
+/Users/graceparkssd/Desktop/viewer/window.h
+randomWalk.h
+/Users/graceparkssd/Desktop/viewer/randomWalk.h
+
 /Users/graceparkssd/Desktop/viewer/window.h
 QWidget
 -
@@ -2391,32 +2419,4 @@ ui_window.h
 /Users/graceparkssd/Desktop/viewer/ui_window.h
 GlViewer.h
 /Users/graceparkssd/Desktop/viewer/GlViewer.h
-
-/Volumes/Macintosh HD/Applications/MATLAB_R2012a.app/extern/include/engine.h
-matrix.h
-/Volumes/Macintosh HD/Applications/MATLAB_R2012a.app/extern/include/matrix.h
-
-/Volumes/Macintosh HD/Applications/MATLAB_R2012a.app/extern/include/matrix.h
-stddef.h
--
-tmwtypes.h
-/Volumes/Macintosh HD/Applications/MATLAB_R2012a.app/extern/include/tmwtypes.h
-stddef.h
--
-stdlib.h
--
-assert.h
--
-stdlib.h
--
-
-/Volumes/Macintosh HD/Applications/MATLAB_R2012a.app/extern/include/tmwtypes.h
-limits.h
--
-stdbool.h
--
-float.h
--
-stddef.h
--
 

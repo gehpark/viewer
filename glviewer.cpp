@@ -201,7 +201,7 @@ void GlViewer::draw_one_obstacle(const double cx,
                                const std::vector<double>& points) const
 {
     glPushMatrix();
-    glColor4f(0.0,0.7,0.3,0.4);
+    glColor4f(0.0,0.7,0.3,0.8);
     
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glTranslated(cx, cy, 0.0);
@@ -286,6 +286,7 @@ void GlViewer::generate_obstacles(int nob, QString obstacle_mode, double row_dis
         
     if (obstacle_mode.contains("Circle"))
     {
+            printf("circle yay");
         m_obstacles.clear();
         double OBS_ANGLE = 2 * M_PI / nob;
         for (int i = 0; i < nob; i++)
@@ -298,6 +299,7 @@ void GlViewer::generate_obstacles(int nob, QString obstacle_mode, double row_dis
             m_obstacles[i].n = row_dist * sin(OBS_ANGLE * i);
         }
     }
+
     for (unsigned i = 0; i < m_obstacles.size(); i++)
     {
         m_o_positions.push_back(m_obstacles[i].y);

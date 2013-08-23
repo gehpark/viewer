@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'window.h'
 **
-** Created: Thu Aug 22 15:02:22 2013
+** Created: Thu Aug 22 17:09:03 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
+      19,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -49,6 +49,7 @@ static const uint qt_meta_data_MainWindow[] = {
      249,   11,   11,   11, 0x0a,
      261,   11,   11,   11, 0x0a,
      277,  272,   11,   11, 0x0a,
+     300,   11,  295,   11, 0x0a,
 
        0        // eod
 };
@@ -62,7 +63,7 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "restart()\0default_values()\0"
     "bin_count_window()\0upWind()\0downWind()\0"
     "rightWind()\0leftWind()\0args\0"
-    "run_batch(char**)\0"
+    "run_batch(char**)\0bool\0isMovingParticlesq()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -89,6 +90,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 15: _t->rightWind(); break;
         case 16: _t->leftWind(); break;
         case 17: _t->run_batch((*reinterpret_cast< char**(*)>(_a[1]))); break;
+        case 18: { bool _r = _t->isMovingParticlesq();
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         default: ;
         }
     }
@@ -128,9 +131,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 19;
     }
     return _id;
 }

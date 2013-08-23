@@ -37,6 +37,7 @@ public:
     std::string stringRadius;
     std::string stringHeatMap;
 
+    bool isMovingParticles;
 
 	QString mode;
     QString string_time;
@@ -75,11 +76,11 @@ public slots:
     void rightWind();
     void leftWind();
     void run_batch(char** args);
-
+    bool isMovingParticlesq();
+    
 private:
 
     int per_row;
-    bool isMovingParticles;
     bool isMovingObstacles;
     QToolBar *belowTool;
     QToolBar *fileToolBar;

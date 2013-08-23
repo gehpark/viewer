@@ -392,25 +392,43 @@ void MainWindow::on_actionCircles_toggled()
     isMovingParticles = !isMovingParticles;
 }
 
+bool MainWindow::isMovingParticlesq()
+{
+    return isMovingParticles;
+}
+
 void MainWindow::run_batch(char **args)
 {
     isMovingParticles = false;
-    int np = (int)(*args[0]);
-    int nob = (int)(*args[9]);
+    int np = atoi(args[1]);
+    int nob = atoi(args[10]);
     time_counter = 0;
-    max_runtime = (int)(*args[16]);
-    double row_dist = (double)(*args[14]);
-    per_row = (int)(*args[15]);
-    OBSTACLE_RADIUS = (double)(*args[10]);
+    max_runtime = atoi(args[17]);
+    double row_dist = atof(args[15]);
+    per_row = atoi(args[16]);
+    OBSTACLE_RADIUS = atof(args[11]);
+    viewer->setObstacleRadius(OBSTACLE_RADIUS);
+    amplitude = atof(args[13]);
     //PARTICLE_RADIUS = .01;
-    //OBSTACLE_RADIUS = .06;
-    mode = (QString)(*args[6]);
-    obstacle_mode = (QString)(*args[13]);
-    interaction = (QString)(*args[8]);
+    mode = QString::fromStdString(args[7]);
+    obstacle_mode = QString::fromStdString(args[14]);
+    oscillation_mode = QString::fromStdString(args[12]);
+    if (oscillation_mode != "Off")
+    {
+        isMovingObstacles = true;
+    }
+    interaction = QString::fromStdString(args[9]);
     viewer->generate_particles(np);
     viewer->generate_obstacles(nob, obstacle_mode, row_dist, per_row);
     viewer->touch(interaction, OBSTACLE_RADIUS);
     viewer->repaint();
+    std::string utf8_text = obstacle_mode.toUtf8().constData();
+    {
+    std::cout << "obstacle mode:" << utf8_text <<std::endl;
+    std::cout << "obstacle radius:" << OBSTACLE_RADIUS <<std::endl;
+    std::cout << "max runtime:" << max_runtime <<std::endl;
+    }
+
 
     //Start moving the circles since by default this is off
     isMovingParticles = true;

@@ -65,4 +65,9 @@ target_link_libraries( ${PROJECT_NAME} ${QT_LIBRARIES} )
 
 # Link with Glut and OpenGL
 target_link_libraries( ${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES}  )
+
+# Link with Matlab
 target_link_libraries( ${PROJECT_NAME} libeng.dylib )
+target_link_libraries( ${PROJECT_NAME} libut.dylib )
+target_link_libraries( ${PROJECT_NAME} libmex.dylib )
+target_link_libraries( ${PROJECT_NAME} libmat.dylib )
