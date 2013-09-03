@@ -23,13 +23,5 @@ int main(int argv, char **args)
 		window.run_batch(args);
 	}
 
-   	/**Engine *ep;
-   	engOpen(NULL);
-   	if (!(ep = engOpen(""))) {
-		fprintf(stderr, "\nCan't start MATLAB engine\n");
-		return EXIT_FAILURE;
-	}
-   	engEvalString(ep, "1+3");
-	**/
 	return app.exec();
 }

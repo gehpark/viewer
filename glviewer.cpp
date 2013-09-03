@@ -286,7 +286,6 @@ void GlViewer::generate_obstacles(int nob, QString obstacle_mode, double row_dis
         
     if (obstacle_mode.contains("Circle"))
     {
-            printf("circle yay");
         m_obstacles.clear();
         double OBS_ANGLE = 2 * M_PI / nob;
         for (int i = 0; i < nob; i++)
@@ -650,6 +649,7 @@ QString GlViewer::output_position(double BIN_COUNT)
     }
     hist1.append(");");
     hist1.append("set(gcf,'renderer','opengl'); set(get(gca,'child'),'FaceColor','interp','CDataMode','auto'); title(\"3D Histogram\");");
+    // PLUS SAVE IMAGE MATLAB
     return hist1;
 }
 
@@ -673,6 +673,7 @@ QString GlViewer::output_position_heat(double BIN_COUNT)
         heat1.append("]");
     }
     heat1.append("); title(\"Heat Map\");");
+    // PLUS SAVE IMAGE MATLAB
     return heat1;
 }
 
@@ -697,6 +698,7 @@ QString GlViewer::radius_data(double BIN_COUNT)
         radius1.append("]");
     }
     radius1.append(");");
+    // PLUS SAVE IMAGE MATLAB
     return radius1;
 }
 

@@ -33,6 +33,7 @@ public:
     double WIND_DIST_Y;
     double OBSTACLE_RADIUS;
     double amplitude;
+    //get rid of the three below
     std::string stringHistogram;
     std::string stringRadius;
     std::string stringHeatMap;

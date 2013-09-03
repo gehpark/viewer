@@ -397,6 +397,7 @@ bool MainWindow::isMovingParticlesq()
     return isMovingParticles;
 }
 
+
 void MainWindow::run_batch(char **args)
 {
     isMovingParticles = false;
@@ -450,10 +451,18 @@ void MainWindow::timer_update()
         {
             viewer->oscillate_obstacles(oscillation_mode, per_row, amplitude);
         }
+        if (time_counter % 1000 == 0)
+        {
+            viewer->output_position(BIN_COUNT);
+            viewer->output_position_heat(BIN_COUNT);
+            viewer->radius_data(BIN_COUNT);
+        }
         if (time_counter/1000.0 >= max_runtime || viewer->run_complete())
         {
             isMovingParticles = false;
-            QMessageBox::information(0, QString("Notification"), QString("run complete!"), QMessageBox::Ok);
-        }
+            printf("run complete!\n");
+            quit();
+            //QMessageBox::information(0, QString("Notification"), QString("run complete!"), QMessageBox::Ok);
+         }
     }
 }
