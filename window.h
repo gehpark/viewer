@@ -37,6 +37,8 @@ public:
     std::string stringHistogram;
     std::string stringRadius;
     std::string stringHeatMap;
+    std::string stringFileName;
+    std::string stringShortFileName;
 
     bool isMovingParticles;
 
@@ -83,6 +85,7 @@ private:
 
     int per_row;
     bool isMovingObstacles;
+    bool isOpenFile;
     QToolBar *belowTool;
     QToolBar *fileToolBar;
 

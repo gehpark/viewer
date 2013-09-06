@@ -13,6 +13,9 @@
 // Random Walk Parameters
 #include "randomWalk.h"
 
+#include <iostream>
+#include <fstream>
+
 //========== FUNCTIONS ========== //
 
 
@@ -26,6 +29,7 @@ MainWindow::MainWindow() : QMainWindow(), Ui_MainWindow()
     // circles instantiated
     isMovingParticles = false;
     isMovingObstacles = false;
+    isOpenFile = false;
     time_counter = 0.00;
     WIND_DIST_Y = 0.00;
     WIND_DIST_X = 0.00;
@@ -56,7 +60,7 @@ MainWindow::MainWindow() : QMainWindow(), Ui_MainWindow()
     coordAct = new QAction(tr("&Coordinates"), this);
     coordAct->setStatusTip(tr("print the coordinates data"));
     connect(coordAct, SIGNAL(triggered()), this, SLOT(coordinates()));
-     
+    
     radAct = new QAction(tr("&Radius"), this);
     radAct->setStatusTip(tr("print the radius data"));
     connect(radAct, SIGNAL(triggered()), this, SLOT(radius()));
@@ -205,6 +209,19 @@ void MainWindow::coordinates()
 {
     stringHistogram = (viewer->output_position(BIN_COUNT)).toUtf8().constData();;
     stringHeatMap = (viewer->output_position_heat(BIN_COUNT)).toUtf8().constData();;
+    stringRadius = (viewer->radius_data(BIN_COUNT)).toUtf8().constData();
+/**
+    
+    myfile << "hist = figure('visible', 'off');\n" << stringHistogram; 
+    myfile << "saveas(hist," <<  stringFileName << "hist" << (time_counter/1000.0) << ",'jpg)";
+    myfile << "heat = heatMap('visible', 'off')\n" <<stringHeatMap;
+    myfile << "saveas(heat," <<  stringFileName << "heat" << (time_counter/1000.0) << ",'jpg)";
+    myfile << "rad = figure(2)('visible', 'off')\n" << stringRadius;
+    myfile << "saveas(rad," <<  stringFileName << "rad" << (time_counter/1000.0) << ",'jpg)";
+    if (time_counter/1000.0 >= max_runtime || viewer->run_complete())
+    {
+        myfile.close();
+    }**/
 }
 
 void MainWindow::radius()
@@ -419,18 +436,14 @@ void MainWindow::run_batch(char **args)
         isMovingObstacles = true;
     }
     interaction = QString::fromStdString(args[9]);
+    stringFileName = args[18];
+    stringShortFileName = args[18];
+    stringFileName += ".txt";
     viewer->generate_particles(np);
     viewer->generate_obstacles(nob, obstacle_mode, row_dist, per_row);
     viewer->touch(interaction, OBSTACLE_RADIUS);
     viewer->repaint();
-    std::string utf8_text = obstacle_mode.toUtf8().constData();
-    {
-    std::cout << "obstacle mode:" << utf8_text <<std::endl;
-    std::cout << "obstacle radius:" << OBSTACLE_RADIUS <<std::endl;
-    std::cout << "max runtime:" << max_runtime <<std::endl;
-    }
-
-
+    
     //Start moving the circles since by default this is off
     isMovingParticles = true;
 }
@@ -441,6 +454,7 @@ void MainWindow::timer_update()
     // If we are moving the circles currently, then call random_walk_circles
     // to make them move!
     if (isMovingParticles){
+
         viewer->random_walk_particles(mode, WIND_DIST_X, WIND_DIST_Y);
         viewer->touch(interaction, OBSTACLE_RADIUS);
         viewer->repaint();
@@ -451,12 +465,29 @@ void MainWindow::timer_update()
         {
             viewer->oscillate_obstacles(oscillation_mode, per_row, amplitude);
         }
+
         if (time_counter % 1000 == 0)
         {
-            viewer->output_position(BIN_COUNT);
-            viewer->output_position_heat(BIN_COUNT);
-            viewer->radius_data(BIN_COUNT);
+            std::ofstream myfile;
+            const char * fileChar = stringFileName.c_str();
+            myfile.open(fileChar);
+            
+            stringHistogram = (viewer->output_position(BIN_COUNT)).toUtf8().constData();;
+            stringHeatMap = (viewer->output_position_heat(BIN_COUNT)).toUtf8().constData();;
+            stringRadius = (viewer->radius_data(BIN_COUNT)).toUtf8().constData();
+
+            myfile << "hist = figure('visible', 'off');\n" << stringHistogram; 
+            myfile << "saveas(hist," <<  stringShortFileName << "hist" << (time_counter/1000.0) << ",'jpg')\n";
+            myfile << "heat = heatMap('visible', 'off')\n" <<stringHeatMap;
+            myfile << "saveas(heat," <<  stringShortFileName << "heat" << (time_counter/1000.0) << ",'jpg')\n";
+            myfile << "figure(2);\n rad = figure(2)('visible', 'off')\n" << stringRadius;
+            myfile << "saveas(rad," <<  stringShortFileName << "rad" << (time_counter/1000.0) << ",'jpg')\n";
+            if (time_counter/1000.0 >= max_runtime || viewer->run_complete())
+            {
+                myfile.close();
+            }
         }
+
         if (time_counter/1000.0 >= max_runtime || viewer->run_complete())
         {
             isMovingParticles = false;

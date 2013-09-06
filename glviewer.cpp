@@ -647,9 +647,8 @@ QString GlViewer::output_position(double BIN_COUNT)
         hist1.append(QString::number(BIN_COUNT));
         hist1.append("]");
     }
-    hist1.append(");");
-    hist1.append("set(gcf,'renderer','opengl'); set(get(gca,'child'),'FaceColor','interp','CDataMode','auto'); title(\"3D Histogram\");");
-    // PLUS SAVE IMAGE MATLAB
+    hist1.append(");\n");
+    hist1.append("set(gcf,'renderer','opengl'); set(get(gca,'child'),'FaceColor','interp','CDataMode','auto'); title(\"3D Histogram\");\n");
     return hist1;
 }
 
@@ -672,7 +671,7 @@ QString GlViewer::output_position_heat(double BIN_COUNT)
         heat1.append(QString::number(BIN_COUNT));
         heat1.append("]");
     }
-    heat1.append("); title(\"Heat Map\");");
+    heat1.append(");\n title(\"Heat Map\");\n");
     // PLUS SAVE IMAGE MATLAB
     return heat1;
 }
@@ -682,8 +681,7 @@ QString GlViewer::output_position_heat(double BIN_COUNT)
 // and it also bins the data for quick use
 QString GlViewer::radius_data(double BIN_COUNT)
 {
-    QString radius1 = "figure(2); ";
-    radius1.append("histfit([");
+    QString radius1 = ("histfit([");
     for (std::vector<coordinates>::iterator it = m_particles.begin(); it!=m_particles.end(); it++)
     {
         double RADIUS_DIST_SQ = ((*it).x * (*it).x + (*it).y * (*it).y);
@@ -697,7 +695,7 @@ QString GlViewer::radius_data(double BIN_COUNT)
         radius1.append(QString::number(BIN_COUNT));
         radius1.append("]");
     }
-    radius1.append(");");
+    radius1.append(");\n");
     // PLUS SAVE IMAGE MATLAB
     return radius1;
 }

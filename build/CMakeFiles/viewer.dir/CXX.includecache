@@ -2395,6 +2395,10 @@ window.h
 /Users/graceparkssd/Desktop/viewer/window.h
 randomWalk.h
 /Users/graceparkssd/Desktop/viewer/randomWalk.h
+iostream
+-
+fstream
+-
 
 /Users/graceparkssd/Desktop/viewer/window.h
 QWidget
