@@ -488,9 +488,6 @@ CMakeFiles/viewer.dir/main.cpp.o: ../glviewer.h
 CMakeFiles/viewer.dir/main.cpp.o: ../main.cpp
 CMakeFiles/viewer.dir/main.cpp.o: ../ui_window.h
 CMakeFiles/viewer.dir/main.cpp.o: ../window.h
-CMakeFiles/viewer.dir/main.cpp.o: /Volumes/Macintosh\ HD/Applications/MATLAB_R2012a.app/extern/include/engine.h
-CMakeFiles/viewer.dir/main.cpp.o: /Volumes/Macintosh\ HD/Applications/MATLAB_R2012a.app/extern/include/matrix.h
-CMakeFiles/viewer.dir/main.cpp.o: /Volumes/Macintosh\ HD/Applications/MATLAB_R2012a.app/extern/include/tmwtypes.h
 
 CMakeFiles/viewer.dir/moc_glviewer.cxx.o: /Library/Frameworks/QtGui.framework/Headers/QPaintEvent
 CMakeFiles/viewer.dir/moc_glviewer.cxx.o: /Library/Frameworks/QtGui.framework/Headers/qevent.h

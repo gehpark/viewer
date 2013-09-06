@@ -443,6 +443,7 @@ void MainWindow::run_batch(char **args)
     viewer->generate_obstacles(nob, obstacle_mode, row_dist, per_row);
     viewer->touch(interaction, OBSTACLE_RADIUS);
     viewer->repaint();
+    std::cout << max_runtime <<std::endl;
     
     //Start moving the circles since by default this is off
     isMovingParticles = true;
@@ -470,7 +471,7 @@ void MainWindow::timer_update()
         {
             std::ofstream myfile;
             const char * fileChar = stringFileName.c_str();
-            myfile.open(fileChar);
+            myfile.open(fileChar, std::ios::app|std::ios::ate);
             
             stringHistogram = (viewer->output_position(BIN_COUNT)).toUtf8().constData();;
             stringHeatMap = (viewer->output_position_heat(BIN_COUNT)).toUtf8().constData();;
