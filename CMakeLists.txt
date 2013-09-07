@@ -43,7 +43,8 @@ set( UIS window.ui )
 # Build #
 #########
 
-SET(CMAKE_CXX_FLAGS "-g -L\"/Volumes/Macintosh\ HD/Applications/MATLAB_R2012a.app/bin/maci64/\"")
+SET(CMAKE_CXX_FLAGS "-g") 
+# -L\"/Volumes/Macintosh\ HD/Applications/MATLAB_R2012a.app/bin/maci64/\"")
 
 include_directories(BEFORE . ./build)
 include(${QT_USE_FILE})
@@ -67,7 +68,7 @@ target_link_libraries( ${PROJECT_NAME} ${QT_LIBRARIES} )
 target_link_libraries( ${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES}  )
 
 # Link with Matlab
-target_link_libraries( ${PROJECT_NAME} libeng.dylib )
-target_link_libraries( ${PROJECT_NAME} libut.dylib )
-target_link_libraries( ${PROJECT_NAME} libmex.dylib )
-target_link_libraries( ${PROJECT_NAME} libmat.dylib )
+# target_link_libraries( ${PROJECT_NAME} libeng.dylib )
+# target_link_libraries( ${PROJECT_NAME} libut.dylib )
+# target_link_libraries( ${PROJECT_NAME} libmex.dylib )
+# target_link_libraries( ${PROJECT_NAME} libmat.dylib )

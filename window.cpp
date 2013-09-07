@@ -443,8 +443,6 @@ void MainWindow::run_batch(char **args)
     viewer->generate_obstacles(nob, obstacle_mode, row_dist, per_row);
     viewer->touch(interaction, OBSTACLE_RADIUS);
     viewer->repaint();
-    std::cout << max_runtime <<std::endl;
-    
     //Start moving the circles since by default this is off
     isMovingParticles = true;
 }
