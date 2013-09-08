@@ -427,6 +427,7 @@ void MainWindow::run_batch(char **args)
     OBSTACLE_RADIUS = atof(args[11]);
     viewer->setObstacleRadius(OBSTACLE_RADIUS);
     amplitude = atof(args[13]);
+    BIN_COUNT = atoi(args[18]);
     //PARTICLE_RADIUS = .01;
     mode = QString::fromStdString(args[7]);
     obstacle_mode = QString::fromStdString(args[14]);
@@ -436,8 +437,8 @@ void MainWindow::run_batch(char **args)
         isMovingObstacles = true;
     }
     interaction = QString::fromStdString(args[9]);
-    stringFileName = args[18];
-    stringShortFileName = args[18];
+    stringFileName = args[19];
+    stringShortFileName = args[19];
     stringFileName += ".txt";
     viewer->generate_particles(np);
     viewer->generate_obstacles(nob, obstacle_mode, row_dist, per_row);
@@ -476,11 +477,17 @@ void MainWindow::timer_update()
             stringRadius = (viewer->radius_data(BIN_COUNT)).toUtf8().constData();
 
             myfile << "hist = figure('visible', 'off');\n" << stringHistogram; 
-            myfile << "saveas(hist," <<  stringShortFileName << "hist" << (time_counter/1000.0) << ",'jpg')\n";
-            myfile << "heat = heatMap('visible', 'off')\n" <<stringHeatMap;
-            myfile << "saveas(heat," <<  stringShortFileName << "heat" << (time_counter/1000.0) << ",'jpg')\n";
-            myfile << "figure(2);\n rad = figure(2)('visible', 'off')\n" << stringRadius;
-            myfile << "saveas(rad," <<  stringShortFileName << "rad" << (time_counter/1000.0) << ",'jpg')\n";
+            myfile << "saveas(hist,'" <<  stringShortFileName << "hist" << (time_counter/1000.0) << "','jpg');\n";
+            
+            myfile << "heat = figure('visible', 'off');\n" << stringHeatMap << "heat = hist3(data," << "[" << BIN_COUNT << "," << BIN_COUNT << "]);\n";
+            myfile << "heat_data = heat;\n heat_data(size(heat, 1) + 1, size(heat,2) + 1) = 0;\n";
+            myfile << "xb = linspace(min(data(:,1)),max(data(:,1)),size(heat,1)+1);\n";
+            myfile << "yb = linspace(min(data(:,2)),max(data(:,2)),size(heat,1)+1);\n";
+            myfile << "h = pcolor(xb, yb, heat_data);\n" << "title = ('Heat Map');\n";
+            myfile << "saveas(h,'" <<  stringShortFileName << "heat" << (time_counter/1000.0) << "','jpg');\n";
+            
+            myfile << "figure(2);\n rad = figure('visible', 'off');\n" << stringRadius;
+            myfile << "saveas(rad,'" <<  stringShortFileName << "rad" << (time_counter/1000.0) << "','jpg');\n";
             if (time_counter/1000.0 >= max_runtime || viewer->run_complete())
             {
                 myfile.close();
